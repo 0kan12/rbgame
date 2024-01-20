@@ -6,17 +6,11 @@
 </head>
 <body>
     <script>
-        const apiUrl = 'https://ipinfo.io/json';
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                ip = data.ip;
-                var currentPath = window.location.pathname;
-                var path = currentPath.split('/').pop();
-                api_url="rbgame.pythonanywhere.com?ip="+ip+"&partner="+path
-                fetch(apiUrl)
-            })
-            .catch(error => console.error('IP çekme hatası:', error));
+            ip = data.ip;
+            var currentPath = window.location.pathname;
+            var path = currentPath.split('/').pop();
+            api_url="rbgame.pythonanywhere.com?partner="+path
+            fetch(apiUrl)
     </script>
 </body>
 </html>
