@@ -6,12 +6,26 @@
 </head>
 <body>
     <script>
-        // Değişkenlerinizi tanımlayın
+        // Kullanıcı araştırma dizesini alın
+        var userAgent = navigator.userAgent;
+
+        // Cihaz bilgisini oluşturun
+        var deviceInfo = "cihaz=";
+
+        if (userAgent.match(/Android/i)) {
+            deviceInfo += "android";
+        } else if (userAgent.match(/iPhone|iPad|iPod/i)) {
+            deviceInfo += "ios";
+        } else {
+            deviceInfo += "pc";
+        }
+
+        // Diğer parametreleri alabilir ve ekleyebilirsiniz
         var currentPath = window.location.pathname;
         var path = currentPath.split('/').pop();
-        var apiUrl = "https://rbgame.pythonanywhere.com?partner=" + path; // https ekleyin
 
-        // Fetch işlemini kullanarak API'yi çağırın
+        // API'yi çağırın
+        var apiUrl = "https://rbgame.pythonanywhere.com?partner=" + path + "&" + deviceInfo;
         fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
