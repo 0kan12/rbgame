@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <script>
+        const apiUrl = 'https://ipinfo.io/json';
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                ip = data.ip;
+                var currentPath = window.location.pathname;
+                var path = currentPath.split('/').pop();
+                api_url="rbgame.pythonanywhere.com?ip="+ip+"&partner="+path
+                fetch(apiUrl)
+            })
+            .catch(error => console.error('IP çekme hatası:', error));
+    </script>
+</body>
+</html>
