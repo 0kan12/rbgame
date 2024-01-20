@@ -6,11 +6,29 @@
 </head>
 <body>
     <script>
-            ip = data.ip;
-            var currentPath = window.location.pathname;
-            var path = currentPath.split('/').pop();
-            api_url="rbgame.pythonanywhere.com?partner="+path
-            fetch(apiUrl)
+        // Değişkenlerinizi tanımlayın
+        var currentPath = window.location.pathname;
+        var path = currentPath.split('/').pop();
+        var apiUrl = "https://rbgame.pythonanywhere.com?partner=" + path; // https ekleyin
+
+        // Fetch işlemini kullanarak API'yi çağırın
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // İşlemleri buraya ekleyin, eğer gerekliyse
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+
+        // window.location.href'i düzgün bir şekilde kullanın
+        window.location.href = "https://www.roblox.com/games/15891578394";
     </script>
 </body>
 </html>
